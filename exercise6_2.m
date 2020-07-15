@@ -32,6 +32,9 @@ for ct = 1 : nc
     end
 end
 
-% 誤識別率の計算
-pe = diag(C) / nT;
-disp(pe);
+classesLabel = [string(1:9), "0"];
+
+CM = confusionchart(C, classesLabel, 'RowSummary', 'row-normalized', ...
+    'ColumnSummary', 'column-normalized');
+% 1,2,...,9,0の順にソート
+sortClasses(CM, classesLabel);
